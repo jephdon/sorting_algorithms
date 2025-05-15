@@ -60,13 +60,10 @@ void quicksort_recursive(int *array, size_t low, size_t high, size_t size)
 	if (low < high) /* If there's more than one element */
 	{
 		pi = lomuto_partition(array, low, high, size);
-		if (pi > 0 && pi < high) /* Avoid empty partitions */
-		{
-			/* Sort left side */
+		if (pi > high) /* Sort left side */
 			quicksort_recursive(array, low, pi - 1, size);
-		}
-		/* Sort right side */
-		quicksort_recursive(array, pi + 1, high, size);
+		if (pi < high) /* Sort right side */
+			quicksort_recursive(array, pi + 1, high, size);
 	}
 }
 /**
